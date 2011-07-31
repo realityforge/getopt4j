@@ -4,7 +4,8 @@ import org.realityforge.getopt4j.CLOptionDescriptor;
 import org.realityforge.getopt4j.CLUtil;
 
 /**
- * Demonstrates Basic example of command line utilities.
+ * Demonstrates Basic example of command line parsing. It also demonstrates
+ * generating a usage message from the list of options.
  */
 public class BasicCLI
 {
