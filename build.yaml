@@ -1,0 +1,11 @@
+junit: 4.8.2
+
+gems:
+  - buildr >= 1.4.6
+
+repositories:
+  remote:
+   - http://www.ibiblio.org/maven2
+
+artifacts:
+  junit: junit:junit:jar:4.8.2
