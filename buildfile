@@ -10,4 +10,5 @@ define 'getopt4j' do
   iml.main_source_directories << _("examples")
 
   package(:jar)
+  package(:sources)
 end
