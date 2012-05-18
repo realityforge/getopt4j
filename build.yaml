@@ -5,7 +5,10 @@ gems:
 
 repositories:
   remote:
-   - http://www.ibiblio.org/maven2
+   - http://repo1.maven.org/maven2
+  release_to:
+    url: http://repo.fire.dse.vic.gov.au/content/repositories/releases/
+    username: upload
 
 artifacts:
   junit: junit:junit:jar:4.8.2
