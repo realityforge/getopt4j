@@ -1,5 +1,7 @@
 = getopt4j
 
+{<img src="https://secure.travis-ci.org/realityforge/getopt4j.png?branch=master" alt="Build Status" />}[http://travis-ci.org/realityforge/getopt4j]
+
 The "getopt4j" is designed to parse the command line options in the same manner as the C getopt() function in glibc (the GNU C runtime library). It attempts to do this in a simpler, more Java-centric manner than the original product.
 
 The best way to understand how the library works is to dive into the examples in the examples directory. However if you want to understand more about how the parser works read on.
