@@ -1,11 +1,8 @@
-/ejb/ejb.iml
-/ejb/generated
-/web/web.iml
-/databases/generated
 /target
+/bin
+/.bundle
 /reports
 /*.iws
 /*.ipr
 /*.iml
 /_buildr.rb
-/config/database.yml
