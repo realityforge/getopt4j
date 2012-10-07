@@ -1,27 +1,27 @@
 #!/usr/bin/env bash
-
-ruby_string="jruby-1.6.7" 
-project_name="getopt4j"
-bundler_gem_home="vendor/bundle" 
 cat <<EOF
-***************************************************************
-*  RVM will install the environment for ${project_name} now.  *
-***************************************************************
+*******************************************************
+*  RVM will install the development environment now.  *
+*******************************************************
 EOF
 
+ruby_string="ruby-1.9.3-p0"
+project_dir=`pwd`
+export project_name=${JOB_NAME-`basename "$project_dir"`}
+
 detected_version=`rvm list strings | grep ${ruby_string}`
-if [ ${detected_version} != ${ruby_string} ] ; then 
-  echo "${ruby_string} was not found, running 'rvm install ${ruby_string}'..." 
+if [ "X" == "X${detected_version}" ]; then
+  echo "${ruby_string} was not found, running 'rvm install ${ruby_string}'..."
   rvm install ${ruby_string}
 fi
 
-rvm use --create "${ruby_string}@${project_name}" 
+rvm use --create "${ruby_string}@${project_name}"
 
 if [ -f Gemfile ]; then
-  gem list | grep 'bundler' &> /dev/null 
-  if [ $? -gt 0 ]; then 
-    echo "Installing bundler..." 
-    gem install bundler 
+  gem list | grep 'bundler' &> /dev/null
+  if [ $? -gt 0 ]; then
+    echo "Installing bundler..."
+    gem install bundler
   fi
-  bundle install --binstubs
+  bundle install --no-binstubs | grep -v 'Using' | grep -v 'complete' | sed '/^$/d'
 fi
