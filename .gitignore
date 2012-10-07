@@ -6,3 +6,4 @@
 /*.ipr
 /*.iml
 /_buildr.rb
+/Gemfile.lock
