@@ -1,6 +1,6 @@
 require 'buildr/git_auto_version'
 
-desc "getopt4j: Parse command line arguments in java."
+desc 'getopt4j: Parse command line arguments in java.'
 define 'getopt4j' do
   project.group = 'org.realityforge'
 
@@ -8,7 +8,7 @@ define 'getopt4j' do
   compile.options.target = '1.6'
   compile.options.lint = 'all'
 
-  iml.main_source_directories << _("examples")
+  iml.main_source_directories << _('examples')
 
   package(:jar)
   package(:sources)
