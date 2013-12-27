@@ -2,7 +2,7 @@ require 'buildr/git_auto_version'
 
 desc 'getopt4j: Parse command line arguments in java.'
 define 'getopt4j' do
-  project.group = 'org.realityforge'
+  project.group = 'org.realityforge.getopt4j'
 
   compile.options.source = '1.6'
   compile.options.target = '1.6'
