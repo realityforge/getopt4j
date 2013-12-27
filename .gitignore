@@ -1,6 +1,4 @@
 /target
-/bin
-/.bundle
 /reports
 /*.iws
 /*.ipr
