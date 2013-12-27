@@ -12,4 +12,5 @@ define 'getopt4j' do
 
   package(:jar)
   package(:sources)
+  package(:javadoc)
 end
