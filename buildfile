@@ -10,6 +10,10 @@ define 'getopt4j' do
 
   iml.main_source_directories << _('examples')
 
+  pom.add_apache2_license
+  pom.add_github_project('realityforge/getopt4j')
+  pom.add_developer('realityforge', 'Peter Donald')
+
   package(:jar)
   package(:sources)
   package(:javadoc)
