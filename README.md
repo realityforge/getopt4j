@@ -8,6 +8,17 @@ the same manner as the C getopt() function in glibc (the GNU C runtime
 library). It attempts to do this in a simpler, more Java-centric manner
 than the original product.
 
+The easiest way to download the library is to add it has the maven
+dependency;
+
+```xml
+<dependency>
+   <groupId>org.realityforge.getopt4j</groupId>
+   <artifactId>getopt4j</artifactId>
+   <version>1.1</version>
+</dependency>
+```
+
 The best way to understand how the library works is to dive into the
 examples in the examples directory. However if you want to understand
 more about how the parser works read on.
