@@ -8,8 +8,7 @@ the same manner as the C getopt() function in glibc (the GNU C runtime
 library). It attempts to do this in a simpler, more Java-centric manner
 than the original product.
 
-The easiest way to download the library is to add it has the maven
-dependency;
+The easiest way to download the library is to add the maven dependency;
 
 ```xml
 <dependency>
