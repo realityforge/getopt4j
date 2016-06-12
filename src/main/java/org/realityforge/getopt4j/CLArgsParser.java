@@ -57,6 +57,7 @@ public final class CLArgsParser
   private int _lastOptionId;
   private CLOption _option;
   private int _state = STATE_NORMAL;
+  private int _argIndexForMultiArg;
 
   /**
    * Create a parser that can deal with options and parses certain args.
@@ -636,6 +637,7 @@ public final class CLArgsParser
     {
       if (0 == _option.getArgumentCount())
       {
+        _argIndexForMultiArg = _argIndex;
         final Token token = nextToken(ARG_SEPARATORS);
 
         if (TOKEN_SEPARATOR == token.getType())
@@ -656,12 +658,12 @@ public final class CLArgsParser
         final StringBuilder sb = new StringBuilder();
 
         _ch = getChar();
-        if ('-' == _ch)
+        if (_argIndex != _argIndexForMultiArg && _ch != 0 )
         {
           _lastChar = _ch;
         }
 
-        while (!isSeparator(_ch, ARG2_SEPARATORS))
+        while (_argIndex == _argIndexForMultiArg)
         {
           sb.append(_ch);
           _ch = getChar();

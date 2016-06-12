@@ -14,6 +14,7 @@ public final class ClutilTestCase
   ///Contains incompatable (blee/all)
   private static final String[] ARGLIST4 = new String[]{"-Dstupid=idiot", "are", "--all", "--blee", "here"};
   private static final String[] ARGLIST5 = new String[]{"-f", "myfile.txt"};
+  private static final String[] ARGLIST6 = new String[]{"-Dusername=some-user"};
 
   private static final int DEFINE_OPT = 'D';
   private static final int CASE_CHECK_OPT = 'd';
@@ -258,6 +259,26 @@ public final class ClutilTestCase
     final CLOption option = (CLOption) clOptions.get(0);
     assertEquals("stupid", option.getArgument(0));
     assertEquals("idiot", option.getArgument(1));
+  }
+
+  public void test2ArgsParseWithDashInValue()
+  {
+    //-Dusername=some-user
+    final CLOptionDescriptor[] options = new CLOptionDescriptor[]{DEFINE};
+
+    final CLArgsParser parser = new CLArgsParser(ARGLIST6, options);
+
+    assertNull(parser.getErrorString(), parser.getErrorString());
+
+    final List clOptions = parser.getArguments();
+    final int size = clOptions.size();
+
+    assertEquals(size, 1);
+    assertEquals(((CLOption) clOptions.get(0)).getId(), DEFINE_OPT);
+
+    final CLOption option = (CLOption) clOptions.get(0);
+    assertEquals("username", option.getArgument(0));
+    assertEquals("some-user", option.getArgument(1));
   }
 
   public void testPartParse()
