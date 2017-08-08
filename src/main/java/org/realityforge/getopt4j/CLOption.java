@@ -46,7 +46,7 @@ public final class CLOption
 
   /**
    * Retrieve id of option.
-   * <p/>
+   *
    * The id is eqivalent to character code if it can be a single letter option.
    *
    * @return the id

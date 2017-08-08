@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Parser for command line arguments.
- * <p/>
+ *
  * This parses command lines according to the standard (?) of
  * GNU utilities. Note that CLArgs uses a backing hash table for the options index and
  * so duplicate arguments are only returned by getArguments().
