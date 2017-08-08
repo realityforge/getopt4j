@@ -668,7 +668,7 @@ public final class CLArgsParser
 
         final String argument = sb.toString();
 
-        //System.out.println( "Arguement:" + argument );
+        //System.out.println( "Argument:" + argument );
 
         _option.addArgument(argument);
         addOption(_option);
