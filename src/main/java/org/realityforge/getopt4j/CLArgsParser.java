@@ -28,7 +28,6 @@ public final class CLArgsParser
   private static final int STATE_NO_OPTIONS = 4;
   private static final int STATE_OPTION_MODE = 5;
 
-  private static final char[] ARG2_SEPARATORS = new char[]{(char) 0, '=', '-'};
   private static final char[] ARG_SEPARATORS = new char[]{(char) 0, '='};
   private static final char[] NULL_SEPARATORS = new char[]{(char) 0};
 
