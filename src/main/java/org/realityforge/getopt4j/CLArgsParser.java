@@ -28,9 +28,6 @@ public final class CLArgsParser
   private static final int STATE_NO_OPTIONS = 4;
   private static final int STATE_OPTION_MODE = 5;
 
-  private static final int TOKEN_SEPARATOR = 0;
-  private static final int TOKEN_STRING = 1;
-
   private static final char[] ARG2_SEPARATORS = new char[]{(char) 0, '=', '-'};
   private static final char[] ARG_SEPARATORS = new char[]{(char) 0, '='};
   private static final char[] NULL_SEPARATORS = new char[]{(char) 0};
@@ -529,7 +526,7 @@ public final class CLArgsParser
     if (isSeparator(_ch, separators))
     {
       _ch = getChar();
-      return new Token(TOKEN_SEPARATOR, null);
+      return new Token(Token.TOKEN_SEPARATOR, null);
     }
 
     final StringBuilder sb = new StringBuilder();
@@ -541,7 +538,7 @@ public final class CLArgsParser
     }
     while (!isSeparator(_ch, separators));
 
-    return new Token(TOKEN_STRING, sb.toString());
+    return new Token(Token.TOKEN_STRING, sb.toString());
   }
 
   private boolean isSeparator(final char ch, final char[] separators)
@@ -640,7 +637,7 @@ public final class CLArgsParser
         _argIndexForMultiArg = _argIndex;
         final Token token = nextToken(ARG_SEPARATORS);
 
-        if (TOKEN_SEPARATOR == token.getType())
+        if (Token.TOKEN_SEPARATOR == token.getType())
         {
           final CLOptionDescriptor descriptor = getDescriptorFor(_option.getId());
           final String message =
