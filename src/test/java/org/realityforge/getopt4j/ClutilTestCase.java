@@ -277,6 +277,25 @@ public final class ClutilTestCase
     assertEquals("idiot", option.getArgument(1));
   }
 
+  public void test2ArgsParseWhere2ndValueHashDash()
+  {
+    final CLOptionDescriptor[] options = new CLOptionDescriptor[]{DEFINE};
+
+    final CLArgsParser parser = new CLArgsParser(new String[]{"-Dversion=1-2"}, options);
+
+    assertNull(parser.getErrorString(), parser.getErrorString());
+
+    final List clOptions = parser.getArguments();
+    final int size = clOptions.size();
+
+    assertEquals(size, 1);
+    assertEquals(((CLOption) clOptions.get(0)).getId(), DEFINE_OPT);
+
+    final CLOption option = (CLOption) clOptions.get(0);
+    assertEquals("version", option.getArgument(0));
+    assertEquals("1-2", option.getArgument(1));
+  }
+
   public void test2ArgsParseWithDashInValue()
   {
     //-Dusername=some-user
