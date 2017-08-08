@@ -15,6 +15,7 @@ public final class ClutilTestCase
   private static final String[] ARGLIST4 = new String[]{"-Dstupid=idiot", "are", "--all", "--blee", "here"};
   private static final String[] ARGLIST5 = new String[]{"-f", "myfile.txt"};
   private static final String[] ARGLIST6 = new String[]{"-Dusername=some-user"};
+  private static final String[] ARGLIST7 = new String[]{"-f", "my-file.txt"};
 
   private static final int DEFINE_OPT = 'D';
   private static final int CASE_CHECK_OPT = 'd';
@@ -235,6 +236,21 @@ public final class ClutilTestCase
     assertEquals(size, 1);
     assertEquals(((CLOption) clOptions.get(0)).getId(), FILE_OPT);
     assertEquals(((CLOption) clOptions.get(0)).getArgument(), "myfile.txt");
+  }
+
+  public void testSingleArgWhereValueHasDash()
+  {
+    final CLOptionDescriptor[] options = new CLOptionDescriptor[]{FILE};
+    final CLArgsParser parser = new CLArgsParser(ARGLIST7, options);
+
+    assertNull(parser.getErrorString(), parser.getErrorString());
+
+    final List clOptions = parser.getArguments();
+    final int size = clOptions.size();
+
+    assertEquals(size, 1);
+    assertEquals(((CLOption) clOptions.get(0)).getId(), FILE_OPT);
+    assertEquals(((CLOption) clOptions.get(0)).getArgument(), "my-file.txt");
   }
 
   public void test2ArgsParse()
