@@ -5,8 +5,8 @@ desc 'getopt4j: Parse command line arguments in java.'
 define 'getopt4j' do
   project.group = 'org.realityforge.getopt4j'
 
-  compile.options.source = '1.6'
-  compile.options.target = '1.6'
+  compile.options.source = '1.8'
+  compile.options.target = '1.8'
   compile.options.lint = 'all'
 
   iml.main_source_directories << _('examples')
