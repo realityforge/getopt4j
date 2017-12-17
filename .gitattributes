@@ -4,6 +4,7 @@
 *.md text
 *.yaml text
 *.yml text
+.gitattributes text
 .gitignore text
 .ruby-version text
 Gemfile text
