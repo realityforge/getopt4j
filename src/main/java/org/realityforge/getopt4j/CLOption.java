@@ -12,8 +12,8 @@ public final class CLOption
    */
   public static final int TEXT_ARGUMENT = 0;
 
-  private String[] m_arguments;
-  private CLOptionDescriptor m_descriptor;
+  private String[] _arguments;
+  private CLOptionDescriptor _descriptor;
 
   /**
    * Retrieve argument to option if it takes arguments.
@@ -34,13 +34,13 @@ public final class CLOption
    */
   public String getArgument( final int index )
   {
-    if ( null == m_arguments || index < 0 || index >= m_arguments.length )
+    if ( null == _arguments || index < 0 || index >= _arguments.length )
     {
       return null;
     }
     else
     {
-      return m_arguments[ index ];
+      return _arguments[ index ];
     }
   }
 
@@ -53,12 +53,12 @@ public final class CLOption
    */
   public int getId()
   {
-    return m_descriptor == null ? TEXT_ARGUMENT : m_descriptor.getId();
+    return _descriptor == null ? TEXT_ARGUMENT : _descriptor.getId();
   }
 
   public CLOptionDescriptor getDescriptor()
   {
-    return m_descriptor;
+    return _descriptor;
   }
 
   /**
@@ -68,7 +68,7 @@ public final class CLOption
    */
   public CLOption( final CLOptionDescriptor descriptor )
   {
-    m_descriptor = descriptor;
+    _descriptor = descriptor;
   }
 
   /**
@@ -89,16 +89,16 @@ public final class CLOption
    */
   public void addArgument( final String argument )
   {
-    if ( null == m_arguments )
+    if ( null == _arguments )
     {
-      m_arguments = new String[]{ argument };
+      _arguments = new String[]{ argument };
     }
     else
     {
-      final String[] arguments = new String[ m_arguments.length + 1 ];
-      System.arraycopy( m_arguments, 0, arguments, 0, m_arguments.length );
-      arguments[ m_arguments.length ] = argument;
-      m_arguments = arguments;
+      final String[] arguments = new String[ _arguments.length + 1 ];
+      System.arraycopy( _arguments, 0, arguments, 0, _arguments.length );
+      arguments[ _arguments.length ] = argument;
+      _arguments = arguments;
     }
   }
 
@@ -109,13 +109,13 @@ public final class CLOption
    */
   public int getArgumentCount()
   {
-    if ( null == m_arguments )
+    if ( null == _arguments )
     {
       return 0;
     }
     else
     {
-      return m_arguments.length;
+      return _arguments.length;
     }
   }
 
@@ -127,8 +127,8 @@ public final class CLOption
   public String toString()
   {
     return "[Option " +
-           (char) m_descriptor.getId() +
-           ( null != m_arguments ? ", " + Arrays.asList( m_arguments ) : "" ) +
+           (char) _descriptor.getId() +
+           ( null != _arguments ? ", " + Arrays.asList( _arguments ) : "" ) +
            " ]";
   }
 }

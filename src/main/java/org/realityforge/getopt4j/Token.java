@@ -14,16 +14,16 @@ final class Token
    */
   static final int TOKEN_STRING = 1;
 
-  private final int m_type;
-  private final String m_value;
+  private final int _type;
+  private final String _value;
 
   /**
    * New Token object with a type and value
    */
   Token( final int type, final String value )
   {
-    m_type = type;
-    m_value = value;
+    _type = type;
+    _value = value;
   }
 
   /**
@@ -31,7 +31,7 @@ final class Token
    */
   String getValue()
   {
-    return m_value;
+    return _value;
   }
 
   /**
@@ -39,7 +39,7 @@ final class Token
    */
   int getType()
   {
-    return m_type;
+    return _type;
   }
 
   /**
@@ -47,6 +47,6 @@ final class Token
    */
   public String toString()
   {
-    return m_type + ":" + m_value;
+    return _type + ":" + _value;
   }
 }

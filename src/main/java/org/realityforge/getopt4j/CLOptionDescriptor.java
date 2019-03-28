@@ -31,11 +31,11 @@ public final class CLOptionDescriptor
    */
   public static final int DUPLICATES_ALLOWED = 1 << 5;
 
-  private final int m_id;
-  private final int m_flags;
-  private final String m_name;
-  private final String m_description;
-  private final int[] m_incompatible;
+  private final int _id;
+  private final int _flags;
+  private final String _name;
+  private final String _description;
+  private final int[] _incompatible;
 
   /**
    * Constructor.
@@ -70,11 +70,11 @@ public final class CLOptionDescriptor
                              final String description,
                              final int[] incompatible )
   {
-    m_id = id;
-    m_name = name;
-    m_flags = flags;
-    m_description = description;
-    m_incompatible = incompatible;
+    _id = id;
+    _name = name;
+    _flags = flags;
+    _description = description;
+    _incompatible = incompatible;
 
     int modeCount = 0;
     if ( ( ARGUMENT_REQUIRED & flags ) == ARGUMENT_REQUIRED )
@@ -121,15 +121,15 @@ public final class CLOptionDescriptor
                              final String description,
                              final CLOptionDescriptor[] incompatible )
   {
-    m_id = id;
-    m_name = name;
-    m_flags = flags;
-    m_description = description;
+    _id = id;
+    _name = name;
+    _flags = flags;
+    _description = description;
 
-    m_incompatible = new int[ incompatible.length ];
+    _incompatible = new int[ incompatible.length ];
     for ( int i = 0; i < incompatible.length; i++ )
     {
-      m_incompatible[ i ] = incompatible[ i ].getId();
+      _incompatible[ i ] = incompatible[ i ].getId();
     }
   }
 
@@ -149,7 +149,7 @@ public final class CLOptionDescriptor
    */
   int[] getIncompatible()
   {
-    return m_incompatible;
+    return _incompatible;
   }
 
   /**
@@ -159,7 +159,7 @@ public final class CLOptionDescriptor
    */
   public String getDescription()
   {
-    return m_description;
+    return _description;
   }
 
   /**
@@ -170,7 +170,7 @@ public final class CLOptionDescriptor
    */
   public int getFlags()
   {
-    return m_flags;
+    return _flags;
   }
 
   /**
@@ -181,7 +181,7 @@ public final class CLOptionDescriptor
    */
   public int getId()
   {
-    return m_id;
+    return _id;
   }
 
   /**
@@ -191,7 +191,7 @@ public final class CLOptionDescriptor
    */
   public String getName()
   {
-    return m_name;
+    return _name;
   }
 
   /**
@@ -201,6 +201,6 @@ public final class CLOptionDescriptor
    */
   public String toString()
   {
-    return "[OptionDescriptor " + m_name + ", " + m_id + ", " + m_flags + ", " + m_description + " ]";
+    return "[OptionDescriptor " + _name + ", " + _id + ", " + _flags + ", " + _description + " ]";
   }
 }
