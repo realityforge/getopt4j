@@ -16,7 +16,7 @@ public final class CLUtil
    * @param options the option descriptors
    * @return the formatted description/help for options
    */
-  public static final StringBuffer describeOptions(final CLOptionDescriptor[] options)
+  public static StringBuffer describeOptions( final CLOptionDescriptor[] options)
   {
     final String lSep = System.getProperty("line.separator");
     final StringBuffer sb = new StringBuffer();
