@@ -126,18 +126,9 @@ public final class CLOption
    */
   public final String toString()
   {
-    final StringBuilder sb = new StringBuilder();
-    sb.append("[Option ");
-    sb.append((char) m_descriptor.getId());
-
-    if (null != m_arguments)
-    {
-      sb.append(", ");
-      sb.append(Arrays.asList(m_arguments));
-    }
-
-    sb.append(" ]");
-
-    return sb.toString();
+    return "[Option " +
+           (char) m_descriptor.getId() +
+           ( null != m_arguments ? ", " + Arrays.asList( m_arguments ) : "" ) +
+           " ]";
   }
 }
