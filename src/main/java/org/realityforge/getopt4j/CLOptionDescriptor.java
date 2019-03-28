@@ -137,7 +137,7 @@ public final class CLOptionDescriptor
    * @return the array of incompatible option ids
    * @deprecated Use the correctly spelled {@link #getIncompatible} instead.
    */
-  protected final int[] getIncompatble()
+  protected int[] getIncompatble()
   {
     return getIncompatible();
   }
@@ -147,7 +147,7 @@ public final class CLOptionDescriptor
    *
    * @return the array of incompatible option ids
    */
-  final int[] getIncompatible()
+  int[] getIncompatible()
   {
     return m_incompatible;
   }
@@ -157,7 +157,7 @@ public final class CLOptionDescriptor
    *
    * @return the description
    */
-  public final String getDescription()
+  public String getDescription()
   {
     return m_description;
   }
@@ -168,7 +168,7 @@ public final class CLOptionDescriptor
    *
    * @return the flags
    */
-  public final int getFlags()
+  public int getFlags()
   {
     return m_flags;
   }
@@ -179,7 +179,7 @@ public final class CLOptionDescriptor
    *
    * @return the id
    */
-  public final int getId()
+  public int getId()
   {
     return m_id;
   }
@@ -189,7 +189,7 @@ public final class CLOptionDescriptor
    *
    * @return name/long option
    */
-  public final String getName()
+  public String getName()
   {
     return m_name;
   }
@@ -199,7 +199,7 @@ public final class CLOptionDescriptor
    *
    * @return the converted value to string.
    */
-  public final String toString()
+  public String toString()
   {
     return "[OptionDescriptor " + m_name + ", " + m_id + ", " + m_flags + ", " + m_description + " ]";
   }
