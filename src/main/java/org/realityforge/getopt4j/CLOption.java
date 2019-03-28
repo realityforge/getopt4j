@@ -22,7 +22,7 @@ public final class CLOption
    */
   public String getArgument()
   {
-    return getArgument(0);
+    return getArgument( 0 );
   }
 
   /**
@@ -32,15 +32,15 @@ public final class CLOption
    *              {@link #getArgumentCount()}-1.
    * @return the argument
    */
-  public String getArgument(final int index)
+  public String getArgument( final int index )
   {
-    if (null == m_arguments || index < 0 || index >= m_arguments.length)
+    if ( null == m_arguments || index < 0 || index >= m_arguments.length )
     {
       return null;
     }
     else
     {
-      return m_arguments[index];
+      return m_arguments[ index ];
     }
   }
 
@@ -66,7 +66,7 @@ public final class CLOption
    *
    * @param descriptor the descriptor
    */
-  public CLOption(final CLOptionDescriptor descriptor)
+  public CLOption( final CLOptionDescriptor descriptor )
   {
     m_descriptor = descriptor;
   }
@@ -76,10 +76,10 @@ public final class CLOption
    *
    * @param argument the argument
    */
-  public CLOption(final String argument)
+  public CLOption( final String argument )
   {
-    this((CLOptionDescriptor) null);
-    addArgument(argument);
+    this( (CLOptionDescriptor) null );
+    addArgument( argument );
   }
 
   /**
@@ -87,17 +87,17 @@ public final class CLOption
    *
    * @param argument the argument
    */
-  public void addArgument(final String argument)
+  public void addArgument( final String argument )
   {
-    if (null == m_arguments)
+    if ( null == m_arguments )
     {
-      m_arguments = new String[]{argument};
+      m_arguments = new String[]{ argument };
     }
     else
     {
-      final String[] arguments = new String[m_arguments.length + 1];
-      System.arraycopy(m_arguments, 0, arguments, 0, m_arguments.length);
-      arguments[m_arguments.length] = argument;
+      final String[] arguments = new String[ m_arguments.length + 1 ];
+      System.arraycopy( m_arguments, 0, arguments, 0, m_arguments.length );
+      arguments[ m_arguments.length ] = argument;
       m_arguments = arguments;
     }
   }
@@ -109,7 +109,7 @@ public final class CLOption
    */
   public int getArgumentCount()
   {
-    if (null == m_arguments)
+    if ( null == m_arguments )
     {
       return 0;
     }

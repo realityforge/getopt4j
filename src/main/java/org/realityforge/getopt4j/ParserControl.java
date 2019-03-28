@@ -14,5 +14,5 @@ public interface ParserControl
    * @param lastOptionCode the code of last option parsed
    * @return return true to halt, false to continue parsing
    */
-  boolean isFinished(int lastOptionCode);
+  boolean isFinished( int lastOptionCode );
 }

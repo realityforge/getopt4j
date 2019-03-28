@@ -7,7 +7,7 @@ package org.realityforge.getopt4j;
  * @see ParserControl
  */
 public abstract class AbstractParserControl
-    implements ParserControl
+  implements ParserControl
 {
   /**
    * By default always continue parsing by returning false.
@@ -16,7 +16,7 @@ public abstract class AbstractParserControl
    * @return return true to halt, false to continue parsing
    * @see ParserControl#isFinished(int)
    */
-  public boolean isFinished(int lastOptionCode)
+  public boolean isFinished( int lastOptionCode )
   {
     return false;
   }

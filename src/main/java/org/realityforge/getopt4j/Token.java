@@ -20,7 +20,7 @@ final class Token
   /**
    * New Token object with a type and value
    */
-  Token(final int type, final String value)
+  Token( final int type, final String value )
   {
     m_type = type;
     m_value = value;

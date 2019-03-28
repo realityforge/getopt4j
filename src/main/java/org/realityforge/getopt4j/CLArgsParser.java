@@ -28,8 +28,8 @@ public final class CLArgsParser
   private static final int STATE_NO_OPTIONS = 4;
   private static final int STATE_OPTION_MODE = 5;
 
-  private static final char[] ARG_SEPARATORS = new char[]{(char) 0, '='};
-  private static final char[] NULL_SEPARATORS = new char[]{(char) 0};
+  private static final char[] ARG_SEPARATORS = new char[]{ (char) 0, '=' };
+  private static final char[] NULL_SEPARATORS = new char[]{ (char) 0 };
 
   private CLOptionDescriptor[] _optionDescriptors;
   private List<CLOption> _options;
@@ -63,9 +63,9 @@ public final class CLArgsParser
    * @param optionDescriptors the option descriptors
    * @param control           the parser control used determine behaviour of parser
    */
-  public CLArgsParser(final String[] args,
-                      final CLOptionDescriptor[] optionDescriptors,
-                      final ParserControl control)
+  public CLArgsParser( final String[] args,
+                       final CLOptionDescriptor[] optionDescriptors,
+                       final ParserControl control )
   {
     _optionDescriptors = optionDescriptors;
     _control = control;
@@ -75,10 +75,10 @@ public final class CLArgsParser
     try
     {
       parse();
-      checkIncompatibilities(_options);
+      checkIncompatibilities( _options );
       buildOptionIndex();
     }
-    catch (final ParseException pe)
+    catch ( final ParseException pe )
     {
       _errorMessage = pe.getMessage();
     }
@@ -90,10 +90,10 @@ public final class CLArgsParser
    * @param args              the args
    * @param optionDescriptors the option descriptors
    */
-  public CLArgsParser(final String[] args,
-                      final CLOptionDescriptor[] optionDescriptors)
+  public CLArgsParser( final String[] args,
+                       final CLOptionDescriptor[] optionDescriptors )
   {
-    this(args, optionDescriptors, null);
+    this( args, optionDescriptors, null );
   }
 
   /**
@@ -125,9 +125,9 @@ public final class CLArgsParser
    * @return the {@link CLOption} with the specified id, or <code>null</code> if no CLOption is found.
    * @see CLOption
    */
-  public CLOption getArgumentById(final int id)
+  public CLOption getArgumentById( final int id )
   {
-    return _id2Option.get(id);
+    return _id2Option.get( id );
   }
 
   /**
@@ -136,12 +136,12 @@ public final class CLArgsParser
    *
    * @param name the command line option name
    * @return the {@link CLOption} with the specified name, or
-   *         <code>null</code> if no CLOption is found.
+   * <code>null</code> if no CLOption is found.
    * @see CLOption
    */
-  public CLOption getArgumentByName(final String name)
+  public CLOption getArgumentByName( final String name )
   {
-    return _name2Option.get(name);
+    return _name2Option.get( name );
   }
 
   /**
@@ -160,11 +160,11 @@ public final class CLArgsParser
    * @param id the id
    * @return the descriptor
    */
-  private CLOptionDescriptor getDescriptorFor(final int id)
+  private CLOptionDescriptor getDescriptorFor( final int id )
   {
-    for (final CLOptionDescriptor descriptor : _optionDescriptors)
+    for ( final CLOptionDescriptor descriptor : _optionDescriptors )
     {
-      if (descriptor.getId() == id)
+      if ( descriptor.getId() == id )
       {
         return descriptor;
       }
@@ -179,11 +179,11 @@ public final class CLArgsParser
    * @param name the name
    * @return the descriptor
    */
-  private CLOptionDescriptor getDescriptorFor(final String name)
+  private CLOptionDescriptor getDescriptorFor( final String name )
   {
-    for (final CLOptionDescriptor optionDescriptor : _optionDescriptors)
+    for ( final CLOptionDescriptor optionDescriptor : _optionDescriptors )
     {
-      if (optionDescriptor.getName().equals(name))
+      if ( optionDescriptor.getName().equals( name ) )
       {
         return optionDescriptor;
       }
@@ -198,66 +198,66 @@ public final class CLArgsParser
    *
    * @param arguments the arguments
    */
-  private void checkIncompatibilities(final List<CLOption> arguments)
-      throws ParseException
+  private void checkIncompatibilities( final List<CLOption> arguments )
+    throws ParseException
   {
     final int size = arguments.size();
 
-    for (int i = 0; i < size; i++)
+    for ( int i = 0; i < size; i++ )
     {
-      final CLOption option = arguments.get(i);
+      final CLOption option = arguments.get( i );
       final int id = option.getId();
-      final CLOptionDescriptor descriptor = getDescriptorFor(id);
+      final CLOptionDescriptor descriptor = getDescriptorFor( id );
 
       //this occurs when id == 0 and user has not supplied a descriptor
       //for arguments
-      if (null == descriptor)
+      if ( null == descriptor )
       {
         continue;
       }
 
       final int[] incompatible = descriptor.getIncompatible();
 
-      checkIncompatible(arguments, incompatible, i);
+      checkIncompatible( arguments, incompatible, i );
     }
   }
 
-  private void checkIncompatible(final List<CLOption> arguments,
-                                 final int[] incompatible,
-                                 final int original)
-      throws ParseException
+  private void checkIncompatible( final List<CLOption> arguments,
+                                  final int[] incompatible,
+                                  final int original )
+    throws ParseException
   {
     final int size = arguments.size();
 
-    for (int i = 0; i < size; i++)
+    for ( int i = 0; i < size; i++ )
     {
-      if (original == i)
+      if ( original == i )
       {
         continue;
       }
 
-      final CLOption option = arguments.get(i);
+      final CLOption option = arguments.get( i );
       final int id = option.getId();
 
-      for (final int anIncompatible : incompatible)
+      for ( final int anIncompatible : incompatible )
       {
-        if (id == anIncompatible)
+        if ( id == anIncompatible )
         {
-          final CLOption originalOption = arguments.get(original);
+          final CLOption originalOption = arguments.get( original );
           final int originalId = originalOption.getId();
 
           final String message;
-          if (id == originalId)
+          if ( id == originalId )
           {
             message =
-                "Duplicate options for " + describeDualOption(originalId) + " found.";
+              "Duplicate options for " + describeDualOption( originalId ) + " found.";
           }
           else
           {
-            message = "Incompatible options -" + describeDualOption(id) + " and " +
-                      describeDualOption(originalId) + " found.";
+            message = "Incompatible options -" + describeDualOption( id ) + " and " +
+                      describeDualOption( originalId ) + " found.";
           }
-          throw new ParseException(message, 0);
+          throw new ParseException( message, 0 );
         }
       }
     }
@@ -269,18 +269,18 @@ public final class CLArgsParser
    * @param descriptor the Option Descriptor
    * @return the state
    */
-  private int getStateFor(final CLOptionDescriptor descriptor)
+  private int getStateFor( final CLOptionDescriptor descriptor )
   {
     final int flags = descriptor.getFlags();
-    if ((flags & CLOptionDescriptor.ARGUMENTS_REQUIRED_2) == CLOptionDescriptor.ARGUMENTS_REQUIRED_2)
+    if ( ( flags & CLOptionDescriptor.ARGUMENTS_REQUIRED_2 ) == CLOptionDescriptor.ARGUMENTS_REQUIRED_2 )
     {
       return STATE_REQUIRE_2ARGS;
     }
-    else if ((flags & CLOptionDescriptor.ARGUMENT_REQUIRED) == CLOptionDescriptor.ARGUMENT_REQUIRED)
+    else if ( ( flags & CLOptionDescriptor.ARGUMENT_REQUIRED ) == CLOptionDescriptor.ARGUMENT_REQUIRED )
     {
       return STATE_REQUIRE_ARG;
     }
-    else if ((flags & CLOptionDescriptor.ARGUMENT_OPTIONAL) == CLOptionDescriptor.ARGUMENT_OPTIONAL)
+    else if ( ( flags & CLOptionDescriptor.ARGUMENT_OPTIONAL ) == CLOptionDescriptor.ARGUMENT_OPTIONAL )
     {
       return STATE_OPTIONAL_ARG;
     }
@@ -290,10 +290,10 @@ public final class CLArgsParser
     }
   }
 
-  private String describeDualOption(final int id)
+  private String describeDualOption( final int id )
   {
-    final CLOptionDescriptor descriptor = getDescriptorFor(id);
-    if (null == descriptor)
+    final CLOptionDescriptor descriptor = getDescriptorFor( id );
+    if ( null == descriptor )
     {
       return "<parameter>";
     }
@@ -302,28 +302,27 @@ public final class CLArgsParser
       final StringBuilder sb = new StringBuilder();
       boolean hasCharOption = false;
 
-      if (Character.isLetter((char) id))
+      if ( Character.isLetter( (char) id ) )
       {
-        sb.append('-');
-        sb.append((char) id);
+        sb.append( '-' );
+        sb.append( (char) id );
         hasCharOption = true;
       }
 
       final String longOption = descriptor.getName();
-      if (null != longOption)
+      if ( null != longOption )
       {
-        if (hasCharOption)
+        if ( hasCharOption )
         {
-          sb.append('/');
+          sb.append( '/' );
         }
-        sb.append("--");
-        sb.append(longOption);
+        sb.append( "--" );
+        sb.append( longOption );
       }
 
       return sb.toString();
     }
   }
-
 
   /**
    * Create a string array that is subset of input array.
@@ -335,17 +334,17 @@ public final class CLArgsParser
    * @param charIndex the cut-point in element of array
    * @return the result array
    */
-  private String[] subArray(final String[] array, final int index, final int charIndex)
+  private String[] subArray( final String[] array, final int index, final int charIndex )
   {
     final int remaining = array.length - index;
-    final String[] result = new String[remaining];
+    final String[] result = new String[ remaining ];
 
-    if (remaining > 1)
+    if ( remaining > 1 )
     {
-      System.arraycopy(array, index + 1, result, 1, remaining - 1);
+      System.arraycopy( array, index + 1, result, 1, remaining - 1 );
     }
 
-    result[0] = array[index].substring(charIndex - 1);
+    result[ 0 ] = array[ index ].substring( charIndex - 1 );
 
     return result;
   }
@@ -354,44 +353,44 @@ public final class CLArgsParser
    * Actually parse arguments
    */
   private void parse()
-      throws ParseException
+    throws ParseException
   {
-    if (0 == _args.length)
+    if ( 0 == _args.length )
     {
       return;
     }
 
-    _stringLength = _args[_argIndex].length();
+    _stringLength = _args[ _argIndex ].length();
 
     //ch = peekAtChar();
 
-    while (true)
+    while ( true )
     {
       _ch = peekAtChar();
 
       //System.out.println( "Pre State=" + _state );
       //System.out.println( "Pre Char=" + (char)ch + "/" + (int)ch );
 
-      if (_argIndex >= _args.length)
+      if ( _argIndex >= _args.length )
       {
         break;
       }
 
-      if (null != _control && _control.isFinished(_lastOptionId))
+      if ( null != _control && _control.isFinished( _lastOptionId ) )
       {
         //this may need mangling due to peeks
-        _unParsedArgs = subArray(_args, _argIndex, _stringIndex);
+        _unParsedArgs = subArray( _args, _argIndex, _stringIndex );
         return;
       }
 
       //System.out.println( "State=" + _state );
       //System.out.println( "Char=" + (char)ch + "/" + (int)ch );
 
-      if (STATE_OPTION_MODE == _state)
+      if ( STATE_OPTION_MODE == _state )
       {
         //if get to an arg barrier then return to normal mode
         //else continue accumulating options
-        if (0 == _ch)
+        if ( 0 == _ch )
         {
           getChar(); //strip the null
           _state = STATE_NORMAL;
@@ -401,19 +400,19 @@ public final class CLArgsParser
           parseShortOption();
         }
       }
-      else if (STATE_NORMAL == _state)
+      else if ( STATE_NORMAL == _state )
       {
         parseNormal();
       }
-      else if (STATE_NO_OPTIONS == _state)
+      else if ( STATE_NO_OPTIONS == _state )
       {
         //should never get to here when stringIndex != 0
-        addOption(new CLOption(_args[_argIndex++]));
+        addOption( new CLOption( _args[ _argIndex++ ] ) );
       }
-      else if (STATE_OPTIONAL_ARG == _state && '-' == _ch)
+      else if ( STATE_OPTIONAL_ARG == _state && '-' == _ch )
       {
         _state = STATE_NORMAL;
-        addOption(_option);
+        addOption( _option );
       }
       else
       {
@@ -421,44 +420,44 @@ public final class CLArgsParser
       }
     }
 
-    if (_option != null)
+    if ( _option != null )
     {
-      if (STATE_OPTIONAL_ARG == _state)
+      if ( STATE_OPTIONAL_ARG == _state )
       {
-        _options.add(_option);
+        _options.add( _option );
       }
-      else if (STATE_REQUIRE_ARG == _state)
+      else if ( STATE_REQUIRE_ARG == _state )
       {
-        final CLOptionDescriptor descriptor = getDescriptorFor(_option.getId());
+        final CLOptionDescriptor descriptor = getDescriptorFor( _option.getId() );
         final String message =
-            "Missing argument to option " + getOptionDescription(descriptor);
-        throw new ParseException(message, 0);
+          "Missing argument to option " + getOptionDescription( descriptor );
+        throw new ParseException( message, 0 );
       }
-      else if (STATE_REQUIRE_2ARGS == _state)
+      else if ( STATE_REQUIRE_2ARGS == _state )
       {
-        if (1 == _option.getArgumentCount())
+        if ( 1 == _option.getArgumentCount() )
         {
-          _option.addArgument("");
-          _options.add(_option);
+          _option.addArgument( "" );
+          _options.add( _option );
         }
         else
         {
-          final CLOptionDescriptor descriptor = getDescriptorFor(_option.getId());
+          final CLOptionDescriptor descriptor = getDescriptorFor( _option.getId() );
           final String message =
-              "Missing argument to option " + getOptionDescription(descriptor);
-          throw new ParseException(message, 0);
+            "Missing argument to option " + getOptionDescription( descriptor );
+          throw new ParseException( message, 0 );
         }
       }
       else
       {
-        throw new ParseException("IllegalState " + _state + ": " + _option, 0);
+        throw new ParseException( "IllegalState " + _state + ": " + _option, 0 );
       }
     }
   }
 
-  private String getOptionDescription(final CLOptionDescriptor descriptor)
+  private String getOptionDescription( final CLOptionDescriptor descriptor )
   {
-    if (_isLong)
+    if ( _isLong )
     {
       return "--" + descriptor.getName();
     }
@@ -470,7 +469,7 @@ public final class CLArgsParser
 
   private char peekAtChar()
   {
-    if (INVALID == _lastChar)
+    if ( INVALID == _lastChar )
     {
       _lastChar = readChar();
     }
@@ -479,7 +478,7 @@ public final class CLArgsParser
 
   private char getChar()
   {
-    if (INVALID != _lastChar)
+    if ( INVALID != _lastChar )
     {
       final char result = (char) _lastChar;
       _lastChar = INVALID;
@@ -493,14 +492,14 @@ public final class CLArgsParser
 
   private char readChar()
   {
-    if (_stringIndex >= _stringLength)
+    if ( _stringIndex >= _stringLength )
     {
       _argIndex++;
       _stringIndex = 0;
 
-      if (_argIndex < _args.length)
+      if ( _argIndex < _args.length )
       {
-        _stringLength = _args[_argIndex].length();
+        _stringLength = _args[ _argIndex ].length();
       }
       else
       {
@@ -510,41 +509,41 @@ public final class CLArgsParser
       return 0;
     }
 
-    if (_argIndex >= _args.length)
+    if ( _argIndex >= _args.length )
     {
       return 0;
     }
 
-    return _args[_argIndex].charAt(_stringIndex++);
+    return _args[ _argIndex ].charAt( _stringIndex++ );
   }
 
-  private Token nextToken(final char[] separators)
+  private Token nextToken( final char[] separators )
   {
     _ch = getChar();
 
-    if (isSeparator(_ch, separators))
+    if ( isSeparator( _ch, separators ) )
     {
       _ch = getChar();
-      return new Token(Token.TOKEN_SEPARATOR, null);
+      return new Token( Token.TOKEN_SEPARATOR, null );
     }
 
     final StringBuilder sb = new StringBuilder();
 
     do
     {
-      sb.append(_ch);
+      sb.append( _ch );
       _ch = getChar();
     }
-    while (!isSeparator(_ch, separators));
+    while ( !isSeparator( _ch, separators ) );
 
-    return new Token(Token.TOKEN_STRING, sb.toString());
+    return new Token( Token.TOKEN_STRING, sb.toString() );
   }
 
-  private boolean isSeparator(final char ch, final char[] separators)
+  private boolean isSeparator( final char ch, final char[] separators )
   {
-    for (final char separator : separators)
+    for ( final char separator : separators )
     {
-      if (ch == separator)
+      if ( ch == separator )
       {
         return true;
       }
@@ -553,100 +552,100 @@ public final class CLArgsParser
     return false;
   }
 
-  private void addOption(final CLOption option)
+  private void addOption( final CLOption option )
   {
-    _options.add(option);
+    _options.add( option );
     _lastOptionId = option.getId();
     _option = null;
   }
 
-  private void parseOption(final CLOptionDescriptor descriptor,
-                           final String optionString)
-      throws ParseException
+  private void parseOption( final CLOptionDescriptor descriptor,
+                            final String optionString )
+    throws ParseException
   {
-    if (null == descriptor)
+    if ( null == descriptor )
     {
-      throw new ParseException("Unknown option " + optionString, 0);
+      throw new ParseException( "Unknown option " + optionString, 0 );
     }
 
-    _state = getStateFor(descriptor);
-    _option = new CLOption(descriptor);
+    _state = getStateFor( descriptor );
+    _option = new CLOption( descriptor );
 
-    if (STATE_NORMAL == _state)
+    if ( STATE_NORMAL == _state )
     {
-      addOption(_option);
+      addOption( _option );
     }
   }
 
   private void parseShortOption()
-      throws ParseException
+    throws ParseException
   {
     _ch = getChar();
-    final CLOptionDescriptor descriptor = getDescriptorFor(_ch);
+    final CLOptionDescriptor descriptor = getDescriptorFor( _ch );
     _isLong = false;
-    parseOption(descriptor, "-" + _ch);
+    parseOption( descriptor, "-" + _ch );
 
-    if (STATE_NORMAL == _state)
+    if ( STATE_NORMAL == _state )
     {
       _state = STATE_OPTION_MODE;
     }
   }
 
   private void parseArguments()
-      throws ParseException
+    throws ParseException
   {
-    if (STATE_REQUIRE_ARG == _state)
+    if ( STATE_REQUIRE_ARG == _state )
     {
-      if ('=' == _ch || 0 == _ch)
+      if ( '=' == _ch || 0 == _ch )
       {
         getChar();
       }
 
-      final Token token = nextToken(NULL_SEPARATORS);
-      _option.addArgument(token.getValue());
+      final Token token = nextToken( NULL_SEPARATORS );
+      _option.addArgument( token.getValue() );
 
-      addOption(_option);
+      addOption( _option );
       _state = STATE_NORMAL;
     }
-    else if (STATE_OPTIONAL_ARG == _state)
+    else if ( STATE_OPTIONAL_ARG == _state )
     {
-      if ('-' == _ch || 0 == _ch)
+      if ( '-' == _ch || 0 == _ch )
       {
         getChar(); //consume stray character
-        addOption(_option);
+        addOption( _option );
         _state = STATE_NORMAL;
         return;
       }
 
-      if ('=' == _ch)
+      if ( '=' == _ch )
       {
         getChar();
       }
 
-      final Token token = nextToken(NULL_SEPARATORS);
-      _option.addArgument(token.getValue());
+      final Token token = nextToken( NULL_SEPARATORS );
+      _option.addArgument( token.getValue() );
 
-      addOption(_option);
+      addOption( _option );
       _state = STATE_NORMAL;
     }
-    else if (STATE_REQUIRE_2ARGS == _state)
+    else if ( STATE_REQUIRE_2ARGS == _state )
     {
-      if (0 == _option.getArgumentCount())
+      if ( 0 == _option.getArgumentCount() )
       {
         _argIndexForMultiArg = _argIndex;
-        final Token token = nextToken(ARG_SEPARATORS);
+        final Token token = nextToken( ARG_SEPARATORS );
 
-        if (Token.TOKEN_SEPARATOR == token.getType())
+        if ( Token.TOKEN_SEPARATOR == token.getType() )
         {
-          final CLOptionDescriptor descriptor = getDescriptorFor(_option.getId());
+          final CLOptionDescriptor descriptor = getDescriptorFor( _option.getId() );
           final String message =
-              "Unable to parse first argument for option " +
-              getOptionDescription(descriptor);
-          throw new ParseException(message, 0);
+            "Unable to parse first argument for option " +
+            getOptionDescription( descriptor );
+          throw new ParseException( message, 0 );
         }
         else
         {
-          _option.addArgument(token.getValue());
+          _option.addArgument( token.getValue() );
         }
       }
       else //2nd argument
@@ -654,14 +653,14 @@ public final class CLArgsParser
         final StringBuilder sb = new StringBuilder();
 
         _ch = getChar();
-        if (_argIndex != _argIndexForMultiArg && _ch != 0 )
+        if ( _argIndex != _argIndexForMultiArg && _ch != 0 )
         {
           _lastChar = _ch;
         }
 
-        while (_argIndex == _argIndexForMultiArg)
+        while ( _argIndex == _argIndexForMultiArg )
         {
-          sb.append(_ch);
+          sb.append( _ch );
           _ch = getChar();
         }
 
@@ -669,8 +668,8 @@ public final class CLArgsParser
 
         //System.out.println( "Argument:" + argument );
 
-        _option.addArgument(argument);
-        addOption(_option);
+        _option.addArgument( argument );
+        addOption( _option );
         _option = null;
         _state = STATE_NORMAL;
       }
@@ -681,29 +680,29 @@ public final class CLArgsParser
    * Parse Options from Normal mode.
    */
   private void parseNormal()
-      throws ParseException
+    throws ParseException
   {
-    if ('-' != _ch)
+    if ( '-' != _ch )
     {
       //Parse the arguments that are not options
-      final String argument = nextToken(NULL_SEPARATORS).getValue();
-      addOption(new CLOption(argument));
+      final String argument = nextToken( NULL_SEPARATORS ).getValue();
+      addOption( new CLOption( argument ) );
       _state = STATE_NORMAL;
     }
     else
     {
       getChar(); // strip the -
 
-      if (0 == peekAtChar())
+      if ( 0 == peekAtChar() )
       {
-        throw new ParseException("Malformed option -", 0);
+        throw new ParseException( "Malformed option -", 0 );
       }
       else
       {
         _ch = peekAtChar();
 
         //if it is a short option then parse it else ...
-        if ('-' != _ch)
+        if ( '-' != _ch )
         {
           parseShortOption();
         }
@@ -713,7 +712,7 @@ public final class CLArgsParser
           //-- sequence .. it can either mean a change of state
           //to STATE_NO_OPTIONS or else a long option
 
-          if (0 == peekAtChar())
+          if ( 0 == peekAtChar() )
           {
             getChar();
             _state = STATE_NO_OPTIONS;
@@ -721,10 +720,10 @@ public final class CLArgsParser
           else
           {
             //its a long option
-            final String optionName = nextToken(ARG_SEPARATORS).getValue();
-            final CLOptionDescriptor descriptor = getDescriptorFor(optionName);
+            final String optionName = nextToken( ARG_SEPARATORS ).getValue();
+            final CLOptionDescriptor descriptor = getDescriptorFor( optionName );
             _isLong = true;
-            parseOption(descriptor, "--" + optionName);
+            parseOption( descriptor, "--" + optionName );
           }
         }
       }
@@ -737,16 +736,16 @@ public final class CLArgsParser
   private void buildOptionIndex()
   {
     final int size = _options.size();
-    _id2Option = new HashMap<Integer, CLOption>(size * 2);
-    _name2Option = new HashMap<String, CLOption>(size * 2);
+    _id2Option = new HashMap<Integer, CLOption>( size * 2 );
+    _name2Option = new HashMap<String, CLOption>( size * 2 );
 
-    for (final CLOption option : _options)
+    for ( final CLOption option : _options )
     {
-      final CLOptionDescriptor descriptor = getDescriptorFor(option.getId());
-      _id2Option.put(option.getId(), option);
-      if (null != descriptor && null != descriptor.getName())
+      final CLOptionDescriptor descriptor = getDescriptorFor( option.getId() );
+      _id2Option.put( option.getId(), option );
+      if ( null != descriptor && null != descriptor.getName() )
       {
-        _name2Option.put(descriptor.getName(), option);
+        _name2Option.put( descriptor.getName(), option );
       }
     }
   }
