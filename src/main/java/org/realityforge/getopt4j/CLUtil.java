@@ -16,9 +16,9 @@ public final class CLUtil
    * @param options the option descriptors
    * @return the formatted description/help for options
    */
-  public static StringBuffer describeOptions( final CLOptionDescriptor[] options)
+  public static StringBuffer describeOptions( final CLOptionDescriptor[] options )
   {
-    final String lSep = System.getProperty("line.separator");
+    final String lSep = System.getProperty( "line.separator" );
     final StringBuffer sb = new StringBuffer();
 
     for ( final CLOptionDescriptor option : options )
@@ -28,11 +28,9 @@ public final class CLUtil
       String description = option.getDescription();
       int flags = option.getFlags();
       boolean argumentRequired =
-        ( ( flags & CLOptionDescriptor.ARGUMENT_REQUIRED ) ==
-          CLOptionDescriptor.ARGUMENT_REQUIRED );
+        ( ( flags & CLOptionDescriptor.ARGUMENT_REQUIRED ) == CLOptionDescriptor.ARGUMENT_REQUIRED );
       boolean twoArgumentsRequired =
-        ( ( flags & CLOptionDescriptor.ARGUMENTS_REQUIRED_2 ) ==
-          CLOptionDescriptor.ARGUMENTS_REQUIRED_2 );
+        ( ( flags & CLOptionDescriptor.ARGUMENTS_REQUIRED_2 ) == CLOptionDescriptor.ARGUMENTS_REQUIRED_2 );
       boolean needComma = false;
       if ( twoArgumentsRequired )
       {
