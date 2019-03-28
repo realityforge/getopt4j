@@ -47,10 +47,6 @@ class Token
    */
   public final String toString()
   {
-    final StringBuffer sb = new StringBuffer();
-    sb.append(m_type);
-    sb.append(":");
-    sb.append(m_value);
-    return sb.toString();
+    return m_type + ":" + m_value;
   }
 }
