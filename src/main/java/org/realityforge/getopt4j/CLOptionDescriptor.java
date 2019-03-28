@@ -45,14 +45,14 @@ public final class CLOptionDescriptor
    * @param id          the id/character option
    * @param description description of option usage
    */
-  public CLOptionDescriptor(final String name,
-                            final int flags,
-                            final int id,
-                            final String description)
+  public CLOptionDescriptor( final String name,
+                             final int flags,
+                             final int id,
+                             final String description )
   {
-    this(name, flags, id, description,
-         ((flags & CLOptionDescriptor.DUPLICATES_ALLOWED) > 0)
-             ? new int[0] : new int[]{id});
+    this( name, flags, id, description,
+          ( ( flags & CLOptionDescriptor.DUPLICATES_ALLOWED ) > 0 )
+          ? new int[ 0 ] : new int[]{ id } );
   }
 
   /**
@@ -64,11 +64,11 @@ public final class CLOptionDescriptor
    * @param description  description of option usage
    * @param incompatible an array listing the ids of all incompatible options
    */
-  public CLOptionDescriptor(final String name,
-                            final int flags,
-                            final int id,
-                            final String description,
-                            final int[] incompatible)
+  public CLOptionDescriptor( final String name,
+                             final int flags,
+                             final int id,
+                             final String description,
+                             final int[] incompatible )
   {
     m_id = id;
     m_name = name;
@@ -77,32 +77,32 @@ public final class CLOptionDescriptor
     m_incompatible = incompatible;
 
     int modeCount = 0;
-    if ((ARGUMENT_REQUIRED & flags) == ARGUMENT_REQUIRED)
+    if ( ( ARGUMENT_REQUIRED & flags ) == ARGUMENT_REQUIRED )
     {
       modeCount++;
     }
-    if ((ARGUMENT_OPTIONAL & flags) == ARGUMENT_OPTIONAL)
+    if ( ( ARGUMENT_OPTIONAL & flags ) == ARGUMENT_OPTIONAL )
     {
       modeCount++;
     }
-    if ((ARGUMENT_DISALLOWED & flags) == ARGUMENT_DISALLOWED)
+    if ( ( ARGUMENT_DISALLOWED & flags ) == ARGUMENT_DISALLOWED )
     {
       modeCount++;
     }
-    if ((ARGUMENTS_REQUIRED_2 & flags) == ARGUMENTS_REQUIRED_2)
+    if ( ( ARGUMENTS_REQUIRED_2 & flags ) == ARGUMENTS_REQUIRED_2 )
     {
       modeCount++;
     }
 
-    if (0 == modeCount)
+    if ( 0 == modeCount )
     {
       final String message = "No mode specified for option " + this;
-      throw new IllegalStateException(message);
+      throw new IllegalStateException( message );
     }
-    else if (1 != modeCount)
+    else if ( 1 != modeCount )
     {
       final String message = "Multiple modes specified for option " + this;
-      throw new IllegalStateException(message);
+      throw new IllegalStateException( message );
     }
   }
 
@@ -115,21 +115,21 @@ public final class CLOptionDescriptor
    * @param description  description of option usage
    * @param incompatible the incompatible options.
    */
-  public CLOptionDescriptor(final String name,
-                            final int flags,
-                            final int id,
-                            final String description,
-                            final CLOptionDescriptor[] incompatible)
+  public CLOptionDescriptor( final String name,
+                             final int flags,
+                             final int id,
+                             final String description,
+                             final CLOptionDescriptor[] incompatible )
   {
     m_id = id;
     m_name = name;
     m_flags = flags;
     m_description = description;
 
-    m_incompatible = new int[incompatible.length];
-    for (int i = 0; i < incompatible.length; i++)
+    m_incompatible = new int[ incompatible.length ];
+    for ( int i = 0; i < incompatible.length; i++ )
     {
-      m_incompatible[i] = incompatible[i].getId();
+      m_incompatible[ i ] = incompatible[ i ].getId();
     }
   }
 
@@ -201,18 +201,6 @@ public final class CLOptionDescriptor
    */
   public final String toString()
   {
-    final StringBuffer sb = new StringBuffer();
-    sb.append("[OptionDescriptor ");
-    sb.append(m_name);
-    sb.append("[OptionDescriptor ");
-    sb.append(m_name);
-    sb.append(", ");
-    sb.append(m_id);
-    sb.append(", ");
-    sb.append(m_flags);
-    sb.append(", ");
-    sb.append(m_description);
-    sb.append(" ]");
-    return sb.toString();
+    return "[OptionDescriptor " + m_name + ", " + m_id + ", " + m_flags + ", " + m_description + " ]";
   }
 }
