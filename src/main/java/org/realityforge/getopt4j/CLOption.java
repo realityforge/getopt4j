@@ -20,7 +20,7 @@ public final class CLOption
    *
    * @return the (first) argument
    */
-  public final String getArgument()
+  public String getArgument()
   {
     return getArgument(0);
   }
@@ -32,7 +32,7 @@ public final class CLOption
    *              {@link #getArgumentCount()}-1.
    * @return the argument
    */
-  public final String getArgument(final int index)
+  public String getArgument(final int index)
   {
     if (null == m_arguments || index < 0 || index >= m_arguments.length)
     {
@@ -51,12 +51,12 @@ public final class CLOption
    *
    * @return the id
    */
-  public final int getId()
+  public int getId()
   {
     return m_descriptor == null ? TEXT_ARGUMENT : m_descriptor.getId();
   }
 
-  public final CLOptionDescriptor getDescriptor()
+  public CLOptionDescriptor getDescriptor()
   {
     return m_descriptor;
   }
@@ -87,7 +87,7 @@ public final class CLOption
    *
    * @param argument the argument
    */
-  public final void addArgument(final String argument)
+  public void addArgument(final String argument)
   {
     if (null == m_arguments)
     {
@@ -107,7 +107,7 @@ public final class CLOption
    *
    * @return the number of arguments
    */
-  public final int getArgumentCount()
+  public int getArgumentCount()
   {
     if (null == m_arguments)
     {
@@ -124,7 +124,7 @@ public final class CLOption
    *
    * @return the string value
    */
-  public final String toString()
+  public String toString()
   {
     return "[Option " +
            (char) m_descriptor.getId() +
