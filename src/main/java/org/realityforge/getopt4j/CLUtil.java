@@ -21,70 +21,70 @@ public final class CLUtil
     final String lSep = System.getProperty("line.separator");
     final StringBuffer sb = new StringBuffer();
 
-    for (int i = 0; i < options.length; i++)
+    for ( final CLOptionDescriptor option : options )
     {
-      final char ch = (char) options[i].getId();
-      final String name = options[i].getName();
-      String description = options[i].getDescription();
-      int flags = options[i].getFlags();
+      final char ch = (char) option.getId();
+      final String name = option.getName();
+      String description = option.getDescription();
+      int flags = option.getFlags();
       boolean argumentRequired =
-          ((flags & CLOptionDescriptor.ARGUMENT_REQUIRED) ==
-           CLOptionDescriptor.ARGUMENT_REQUIRED);
+        ( ( flags & CLOptionDescriptor.ARGUMENT_REQUIRED ) ==
+          CLOptionDescriptor.ARGUMENT_REQUIRED );
       boolean twoArgumentsRequired =
-          ((flags & CLOptionDescriptor.ARGUMENTS_REQUIRED_2) ==
-           CLOptionDescriptor.ARGUMENTS_REQUIRED_2);
+        ( ( flags & CLOptionDescriptor.ARGUMENTS_REQUIRED_2 ) ==
+          CLOptionDescriptor.ARGUMENTS_REQUIRED_2 );
       boolean needComma = false;
-      if (twoArgumentsRequired)
+      if ( twoArgumentsRequired )
       {
         argumentRequired = true;
       }
 
-      sb.append('\t');
+      sb.append( '\t' );
 
-      if (Character.isLetter(ch))
+      if ( Character.isLetter( ch ) )
       {
-        sb.append("-");
-        sb.append(ch);
+        sb.append( "-" );
+        sb.append( ch );
         needComma = true;
       }
 
-      if (null != name)
+      if ( null != name )
       {
-        if (needComma)
+        if ( needComma )
         {
-          sb.append(", ");
+          sb.append( ", " );
         }
 
-        sb.append("--");
-        sb.append(name);
+        sb.append( "--" );
+        sb.append( name );
       }
 
-      if (argumentRequired)
+      if ( argumentRequired )
       {
-        sb.append(" <argument>");
+        sb.append( " <argument>" );
       }
-      if (twoArgumentsRequired)
+      if ( twoArgumentsRequired )
       {
-        sb.append("=<value>");
+        sb.append( "=<value>" );
       }
-      sb.append(lSep);
+      sb.append( lSep );
 
-      if (null != description)
+      if ( null != description )
       {
-        while (description.length() > MAX_DESCRIPTION_COLUMN_LENGTH)
+        while ( description.length() > MAX_DESCRIPTION_COLUMN_LENGTH )
         {
           final String descriptionPart =
-              description.substring(0, MAX_DESCRIPTION_COLUMN_LENGTH);
+            description.substring( 0, MAX_DESCRIPTION_COLUMN_LENGTH );
           description =
-              description.substring(MAX_DESCRIPTION_COLUMN_LENGTH);
-          sb.append("\t\t");
-          sb.append(descriptionPart);
-          sb.append(lSep);
+            description.substring( MAX_DESCRIPTION_COLUMN_LENGTH );
+          sb.append( "\t\t" );
+          sb.append( descriptionPart );
+          sb.append( lSep );
         }
 
-        sb.append("\t\t");
-        sb.append(description);
-        sb.append(lSep);
+        sb.append( "\t\t" );
+        sb.append( description );
+        sb.append( lSep );
       }
     }
     return sb;
