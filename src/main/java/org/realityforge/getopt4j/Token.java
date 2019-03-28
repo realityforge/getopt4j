@@ -8,11 +8,11 @@ class Token
   /**
    * Type for a separator token
    */
-  public static final int TOKEN_SEPARATOR = 0;
+  static final int TOKEN_SEPARATOR = 0;
   /**
    * Type for a text token
    */
-  public static final int TOKEN_STRING = 1;
+  static final int TOKEN_STRING = 1;
 
   private final int m_type;
   private final String m_value;
