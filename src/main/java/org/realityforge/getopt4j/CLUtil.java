@@ -29,7 +29,7 @@ public final class CLUtil
       int flags = option.getFlags();
       boolean argumentRequired =
         ( ( flags & CLOptionDescriptor.ARGUMENT_REQUIRED ) == CLOptionDescriptor.ARGUMENT_REQUIRED );
-      boolean twoArgumentsRequired =
+      final boolean twoArgumentsRequired =
         ( ( flags & CLOptionDescriptor.ARGUMENTS_REQUIRED_2 ) == CLOptionDescriptor.ARGUMENTS_REQUIRED_2 );
       boolean needComma = false;
       if ( twoArgumentsRequired )
