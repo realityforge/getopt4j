@@ -3,7 +3,7 @@ package org.realityforge.getopt4j;
 /**
  * Token handles tokenizing the CLI arguments
  */
-class Token
+final class Token
 {
   /**
    * Type for a separator token
@@ -29,7 +29,7 @@ class Token
   /**
    * Get the value of the token
    */
-  final String getValue()
+  String getValue()
   {
     return m_value;
   }
@@ -37,7 +37,7 @@ class Token
   /**
    * Get the type of the token
    */
-  final int getType()
+  int getType()
   {
     return m_type;
   }
@@ -45,7 +45,7 @@ class Token
   /**
    * Convert to a string
    */
-  public final String toString()
+  public String toString()
   {
     return m_type + ":" + m_value;
   }
