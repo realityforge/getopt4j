@@ -109,10 +109,11 @@ public final class CLOptionDescriptor
   /**
    * Constructor.
    *
-   * @param name        the name/long option
-   * @param flags       the flags
-   * @param id          the id/character option
-   * @param description description of option usage
+   * @param name         the name/long option
+   * @param flags        the flags
+   * @param id           the id/character option
+   * @param description  description of option usage
+   * @param incompatible the incompatible options.
    */
   public CLOptionDescriptor(final String name,
                             final int flags,
