@@ -1,5 +1,4 @@
-getopt4j - Command line parsing library
-=======================================
+# getopt4j - Command line parsing library
 
 [![Build Status](https://secure.travis-ci.org/realityforge/getopt4j.svg?branch=master)](http://travis-ci.org/realityforge/getopt4j)
 [<img src="https://img.shields.io/maven-central/v/org.realityforge.getopt4j/getopt4j.svg?label=latest%20release"/>](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.realityforge.getopt4j%22%20a%3A%22getopt4j%22)
@@ -23,8 +22,7 @@ The best way to understand how the library works is to dive into the
 examples in the examples directory. However if you want to understand
 more about how the parser works read on.
 
-Parsing Rules
--------------
+## Parsing Rules
 
 The command line is parsed according to the following rules. There are
 two forms of options in this package, the long form and the short form.
@@ -62,8 +60,7 @@ command line. The '--' characters will not be passed to the user program.
 For instance the line "-- -b" would result in the program being passed the
 text "-b" (ie. not as an option).
 
-License
--------
+## License
 
 The code originates from a small project written in 1998 and has remained
 largely unchanged. However it has done several stints at some open-source
