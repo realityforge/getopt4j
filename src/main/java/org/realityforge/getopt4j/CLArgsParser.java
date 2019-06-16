@@ -728,8 +728,8 @@ public final class CLArgsParser
   private void buildOptionIndex()
   {
     final int size = _options.size();
-    _id2Option = new HashMap<Integer, CLOption>( size * 2 );
-    _name2Option = new HashMap<String, CLOption>( size * 2 );
+    _id2Option = new HashMap<>( size * 2 );
+    _name2Option = new HashMap<>( size * 2 );
 
     for ( final CLOption option : _options )
     {
