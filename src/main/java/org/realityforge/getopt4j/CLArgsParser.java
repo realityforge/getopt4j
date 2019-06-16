@@ -362,14 +362,9 @@ public final class CLArgsParser
 
     _stringLength = _args[ _argIndex ].length();
 
-    //ch = peekAtChar();
-
     while ( true )
     {
       _ch = peekAtChar();
-
-      //System.out.println( "Pre State=" + _state );
-      //System.out.println( "Pre Char=" + (char)ch + "/" + (int)ch );
 
       if ( _argIndex >= _args.length )
       {
@@ -382,9 +377,6 @@ public final class CLArgsParser
         _unParsedArgs = subArray( _args, _argIndex, _stringIndex );
         return;
       }
-
-      //System.out.println( "State=" + _state );
-      //System.out.println( "Char=" + (char)ch + "/" + (int)ch );
 
       if ( STATE_OPTION_MODE == _state )
       {
