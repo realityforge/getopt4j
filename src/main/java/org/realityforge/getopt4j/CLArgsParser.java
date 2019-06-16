@@ -50,7 +50,7 @@ public final class CLArgsParser
 
   private int _lastChar = INVALID;
 
-  private int _lastOptionId;
+  private int _lastOptionId = -1;
   private CLOption _option;
   private int _state = STATE_NORMAL;
   private int _argIndexForMultiArg;
@@ -371,7 +371,7 @@ public final class CLArgsParser
         break;
       }
 
-      if ( null != _control && _control.isFinished( _lastOptionId ) )
+      if ( -1 != _lastOptionId && null != _control && _control.isFinished( _lastOptionId ) )
       {
         //this may need mangling due to peeks
         _unParsedArgs = subArray( _args, _argIndex, _stringIndex );

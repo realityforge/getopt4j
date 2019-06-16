@@ -1,6 +1,7 @@
 package org.realityforge.getopt4j;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
@@ -395,15 +396,19 @@ public final class ClutilTestCase
     final CLOptionDescriptor[] options1 = new CLOptionDescriptor[]{ YOU, ALL, CLEAR1 };
     final CLOptionDescriptor[] options2 = new CLOptionDescriptor[]{};
 
-    final ParserControl control1 = new AbstractParserControl()
+    final AtomicInteger controlCallCount = new AtomicInteger();
+    final ParserControl control = new AbstractParserControl()
     {
       public boolean isFinished( final int lastOptionCode )
       {
+        controlCallCount.incrementAndGet();
         return lastOptionCode == CLEAR1_OPT;
       }
     };
 
-    final CLArgsParser parser1 = new CLArgsParser( ARGLIST1, options1, control1 );
+    final CLArgsParser parser1 =
+      new CLArgsParser( new String[]{ "--you", "are", "--all", "-cler", "kid" }, options1, control );
+    assertEquals( controlCallCount.get(), 4 );
 
     assertNull( parser1.getErrorString(), parser1.getErrorString() );
 
