@@ -14,7 +14,7 @@ The easiest way to download the library is to add the maven dependency;
 <dependency>
    <groupId>org.realityforge.getopt4j</groupId>
    <artifactId>getopt4j</artifactId>
-   <version>1.2</version>
+   <version>1.3</version>
 </dependency>
 ```
 
