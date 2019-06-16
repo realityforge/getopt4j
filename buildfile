@@ -9,6 +9,8 @@ define 'getopt4j' do
   compile.options.target = '1.8'
   compile.options.lint = 'all'
 
+  project.version = ENV['PRODUCT_VERSION'] if ENV['PRODUCT_VERSION']
+
   iml.main_source_directories << _('examples')
 
   pom.add_apache_v2_license
