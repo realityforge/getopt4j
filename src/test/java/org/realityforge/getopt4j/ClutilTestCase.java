@@ -80,8 +80,7 @@ public final class ClutilTestCase
 
     final CLOption option0 = (CLOption) clOptions.get(0);
     assertEquals("Option Code: " + option0.getId(), TAINT_OPT, option0.getId());
-    assertEquals("Option Arg: " + option0.getArgument(0),
-                 null, option0.getArgument(0));
+    assertNull( "Option Arg: " + option0.getArgument( 0 ), option0.getArgument( 0 ) );
 
     final CLOption option1 = (CLOption) clOptions.get(1);
     assertEquals(option1.getId(), CLOption.TEXT_ARGUMENT);
@@ -89,7 +88,7 @@ public final class ClutilTestCase
 
     final CLOption option2 = (CLOption) clOptions.get(2);
     assertEquals(option2.getId(), ALL_OPT);
-    assertEquals(option2.getArgument(0), null);
+    assertNull( option2.getArgument( 0 ) );
   }
 
   public void testShortOptArgUnenteredBeforeOtherOpt()
@@ -109,11 +108,11 @@ public final class ClutilTestCase
 
     final CLOption option0 = (CLOption) clOptions.get(0);
     assertEquals("Option Code: " + option0.getId(), TAINT_OPT, option0.getId());
-    assertEquals("Option Arg: " + option0.getArgument(0), null, option0.getArgument(0));
+    assertNull( "Option Arg: " + option0.getArgument( 0 ), option0.getArgument( 0 ) );
 
     final CLOption option1 = (CLOption) clOptions.get(1);
     assertEquals(option1.getId(), ALL_OPT);
-    assertEquals(option1.getArgument(0), null);
+    assertNull( option1.getArgument( 0 ) );
   }
 
   public void testOptionalArgsWithArgShortBeforeOtherOpt()
@@ -136,7 +135,7 @@ public final class ClutilTestCase
 
     final CLOption option1 = (CLOption) clOptions.get(1);
     assertEquals(ALL_OPT, option1.getId());
-    assertEquals(null, option1.getArgument(0));
+    assertNull( option1.getArgument( 0 ) );
   }
 
   public void testOptionalArgsNoArgShortBeforeOtherOpt()
@@ -155,11 +154,11 @@ public final class ClutilTestCase
     assertEquals(size, 2);
     final CLOption option0 = (CLOption) clOptions.get(0);
     assertEquals(TAINT_OPT, option0.getId());
-    assertEquals(null, option0.getArgument(0));
+    assertNull( option0.getArgument( 0 ) );
 
     final CLOption option1 = (CLOption) clOptions.get(1);
     assertEquals(ALL_OPT, option1.getId());
-    assertEquals(null, option1.getArgument(0));
+    assertNull( option1.getArgument( 0 ) );
   }
 
   public void testFullParse()
@@ -406,7 +405,7 @@ public final class ClutilTestCase
     assertEquals(((CLOption) clOptions1.get(2)).getId(), ALL_OPT);
     assertEquals(((CLOption) clOptions1.get(3)).getId(), CLEAR1_OPT);
 
-    assertTrue(parser1.getUnParsedArgs()[0].equals("ler"));
+    assertEquals( "ler", parser1.getUnParsedArgs()[ 0 ] );
 
     final CLArgsParser parser2 =
         new CLArgsParser(parser1.getUnParsedArgs(), options2);
