@@ -15,6 +15,8 @@ define 'getopt4j' do
   pom.add_github_project('realityforge/getopt4j')
   pom.add_developer('realityforge', 'Peter Donald')
 
+  test.using :testng
+
   package(:jar)
   package(:sources)
   package(:javadoc)

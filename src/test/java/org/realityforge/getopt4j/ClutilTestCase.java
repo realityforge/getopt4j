@@ -1,10 +1,10 @@
 package org.realityforge.getopt4j;
 
 import java.util.List;
-import junit.framework.TestCase;
+import org.testng.annotations.Test;
+import static org.testng.Assert.*;
 
 public final class ClutilTestCase
-  extends TestCase
 {
   private static final String[] ARGLIST1 = new String[]{ "--you", "are", "--all", "-cler", "kid" };
   private static final String[] ARGLIST2 = new String[]{ "-Dstupid=idiot", "are", "--all", "here", "-d" };
@@ -59,7 +59,8 @@ public final class ClutilTestCase
                             TAINT_OPT,
                             "turn on tainting checks (optional level)." );
 
-  public void testOptionalArgWithSpace()
+  @Test
+  public void optionalArgWithSpace()
   {
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ ALL, TAINT };
 
@@ -70,13 +71,12 @@ public final class ClutilTestCase
     assertNull( parser.getErrorString(), parser.getErrorString() );
 
     final List clOptions = parser.getArguments();
-    final int size = clOptions.size();
 
-    assertEquals( "Option count", 3, size );
+    assertEquals( clOptions.size(), 3 );
 
     final CLOption option0 = (CLOption) clOptions.get( 0 );
-    assertEquals( "Option Code: " + option0.getId(), TAINT_OPT, option0.getId() );
-    assertNull( "Option Arg: " + option0.getArgument( 0 ), option0.getArgument( 0 ) );
+    assertEquals( TAINT_OPT, option0.getId() );
+    assertNull( option0.getArgument( 0 ) );
 
     final CLOption option1 = (CLOption) clOptions.get( 1 );
     assertEquals( option1.getId(), CLOption.TEXT_ARGUMENT );
@@ -87,7 +87,8 @@ public final class ClutilTestCase
     assertNull( option2.getArgument( 0 ) );
   }
 
-  public void testShortOptArgUnenteredBeforeOtherOpt()
+  @Test
+  public void shortOptArgUnenteredBeforeOtherOpt()
   {
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ ALL, TAINT };
 
@@ -98,20 +99,20 @@ public final class ClutilTestCase
     assertNull( parser.getErrorString(), parser.getErrorString() );
 
     final List clOptions = parser.getArguments();
-    final int size = clOptions.size();
 
-    assertEquals( "Option count", 2, size );
+    assertEquals( clOptions.size(), 2 );
 
     final CLOption option0 = (CLOption) clOptions.get( 0 );
-    assertEquals( "Option Code: " + option0.getId(), TAINT_OPT, option0.getId() );
-    assertNull( "Option Arg: " + option0.getArgument( 0 ), option0.getArgument( 0 ) );
+    assertEquals( TAINT_OPT, option0.getId(), "Option Code: " + option0.getId() );
+    assertNull( option0.getArgument( 0 ), "Option Arg: " + option0.getArgument( 0 ) );
 
     final CLOption option1 = (CLOption) clOptions.get( 1 );
     assertEquals( option1.getId(), ALL_OPT );
     assertNull( option1.getArgument( 0 ) );
   }
 
-  public void testOptionalArgsWithArgShortBeforeOtherOpt()
+  @Test
+  public void optionalArgsWithArgShortBeforeOtherOpt()
   {
     //"-T3","-a"
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ ALL, TAINT };
@@ -134,7 +135,8 @@ public final class ClutilTestCase
     assertNull( option1.getArgument( 0 ) );
   }
 
-  public void testOptionalArgsNoArgShortBeforeOtherOpt()
+  @Test
+  public void optionalArgsNoArgShortBeforeOtherOpt()
   {
     //"-T","-a"
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ ALL, TAINT };
@@ -157,7 +159,8 @@ public final class ClutilTestCase
     assertNull( option1.getArgument( 0 ) );
   }
 
-  public void testFullParse()
+  @Test
+  public void fullParse()
   {
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ YOU, ALL, CLEAR1, CLEAR2, CLEAR3, CLEAR5 };
 
@@ -179,7 +182,8 @@ public final class ClutilTestCase
     assertEquals( ( (CLOption) clOptions.get( 7 ) ).getId(), 0 );
   }
 
-  public void testDuplicateOptions()
+  @Test
+  public void duplicateOptions()
   {
     //"-Dstupid=idiot","are","--all","--all","here"
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ DEFINE, ALL, CLEAR1 };
@@ -199,7 +203,8 @@ public final class ClutilTestCase
     assertEquals( ( (CLOption) clOptions.get( 4 ) ).getId(), 0 );
   }
 
-  public void testIncompatableOptions()
+  @Test
+  public void incompatibleOptions()
   {
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ DEFINE, ALL, CLEAR1, BLEE };
 
@@ -218,7 +223,8 @@ public final class ClutilTestCase
     assertEquals( ( (CLOption) clOptions.get( 4 ) ).getId(), 0 );
   }
 
-  public void testSingleArg()
+  @Test
+  public void singleArg()
   {
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ FILE };
     final CLArgsParser parser = new CLArgsParser( ARGLIST5, options );
@@ -233,7 +239,8 @@ public final class ClutilTestCase
     assertEquals( ( (CLOption) clOptions.get( 0 ) ).getArgument(), "myfile.txt" );
   }
 
-  public void testSingleArgWhereValueHasDash()
+  @Test
+  public void singleArgWhereValueHasDash()
   {
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ FILE };
     final CLArgsParser parser = new CLArgsParser( ARGLIST7, options );
@@ -248,7 +255,8 @@ public final class ClutilTestCase
     assertEquals( ( (CLOption) clOptions.get( 0 ) ).getArgument(), "my-file.txt" );
   }
 
-  public void test2ArgsParse()
+  @Test
+  public void twoArgsParse()
   {
     //"-Dstupid=idiot","are","--all","here"
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ DEFINE, ALL, CLEAR1, CASE_CHECK };
@@ -272,7 +280,8 @@ public final class ClutilTestCase
     assertEquals( "idiot", option.getArgument( 1 ) );
   }
 
-  public void test2ArgsParseWhere2ndValueHashDash()
+  @Test
+  public void twoArgsParseWhere2ndValueHashDash()
   {
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ DEFINE };
 
@@ -291,7 +300,8 @@ public final class ClutilTestCase
     assertEquals( "1-2", option.getArgument( 1 ) );
   }
 
-  public void test2ArgsParseWithDashInValue()
+  @Test
+  public void twoArgsParseWithDashInValue()
   {
     //-Dusername=some-user
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ DEFINE };
@@ -311,7 +321,8 @@ public final class ClutilTestCase
     assertEquals( "some-user", option.getArgument( 1 ) );
   }
 
-  public void testPartParse()
+  @Test
+  public void partParse()
   {
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ YOU };
 
@@ -332,9 +343,12 @@ public final class ClutilTestCase
 
     assertEquals( size, 1 );
     assertEquals( ( (CLOption) clOptions.get( 0 ) ).getId(), YOU_OPT );
+    //"--you", "are", "--all", "-cler", "kid"
+    assertEquals( parser.getUnParsedArgs(), new String[]{ "are", "--all", "-cler", "kid" } );
   }
 
-  public void test2PartParse()
+  @Test
+  public void twoPartParse()
   {
     final CLOptionDescriptor[] options1 = new CLOptionDescriptor[]{ YOU };
     final CLOptionDescriptor[] options2 = new CLOptionDescriptor[]{ ALL, CLEAR1, CLEAR2, CLEAR3, CLEAR5 };
@@ -375,7 +389,8 @@ public final class ClutilTestCase
     assertEquals( ( (CLOption) clOptions2.get( 6 ) ).getId(), 0 );
   }
 
-  public void test2PartPartialParse()
+  @Test
+  public void twoPartPartialParse()
   {
     final CLOptionDescriptor[] options1 = new CLOptionDescriptor[]{ YOU, ALL, CLEAR1 };
     final CLOptionDescriptor[] options2 = new CLOptionDescriptor[]{};
@@ -416,7 +431,8 @@ public final class ClutilTestCase
     assertEquals( ( (CLOption) clOptions2.get( 1 ) ).getId(), 0 );
   }
 
-  public void testDuplicatesFail()
+  @Test
+  public void duplicatesFail()
   {
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ YOU, ALL, CLEAR1, CLEAR2, CLEAR3, CLEAR5 };
     final CLArgsParser parser = new CLArgsParser( ARGLIST1, options );
@@ -424,7 +440,8 @@ public final class ClutilTestCase
     assertNull( parser.getErrorString(), parser.getErrorString() );
   }
 
-  public void testIncomplete2Args()
+  @Test
+  public void incomplete2Args()
   {
     //"-Dstupid="
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ DEFINE };
@@ -442,7 +459,8 @@ public final class ClutilTestCase
     assertEquals( option.getArgument( 1 ), "" );
   }
 
-  public void testIncomplete2ArgsMixed()
+  @Test
+  public void incomplete2ArgsMixed()
   {
     //"-Dstupid=","-c"
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ DEFINE, CLEAR1 };
@@ -463,7 +481,8 @@ public final class ClutilTestCase
     assertEquals( option.getArgument( 1 ), "" );
   }
 
-  public void testIncomplete2ArgsMixedNoEq()
+  @Test
+  public void incomplete2ArgsMixedNoEq()
   {
     //"-Dstupid","-c"
     final CLOptionDescriptor[] options = new CLOptionDescriptor[]{ DEFINE, CLEAR1 };
@@ -487,7 +506,8 @@ public final class ClutilTestCase
   /**
    * Test the getArgumentById and getArgumentByName lookup methods.
    */
-  public void testArgumentLookup()
+  @Test
+  public void argumentLookup()
   {
     final String[] args = { "-f", "testarg" };
     final CLOptionDescriptor[] options = { FILE };
@@ -505,7 +525,8 @@ public final class ClutilTestCase
   /**
    * Test that you can have null long forms.
    */
-  public void testNullLongForm()
+  @Test
+  public void nullLongForm()
   {
     final CLOptionDescriptor test =
       new CLOptionDescriptor( null, CLOptionDescriptor.ARGUMENT_DISALLOWED, 'n', "test null long form" );
@@ -518,14 +539,14 @@ public final class ClutilTestCase
     assertNotNull( optionByID );
     assertEquals( 'n', optionByID.getId() );
 
-    final CLOption optionByName = parser.getArgumentByName( FILE.getName() );
-    assertNull( "Looking for non-existent option by name", optionByName );
+    assertNull( parser.getArgumentByName( FILE.getName() ) );
   }
 
   /**
    * Test that you can have null descriptions.
    */
-  public void testNullDescription()
+  @Test
+  public void nullDescription()
   {
     final CLOptionDescriptor test =
       new CLOptionDescriptor( "nulltest", CLOptionDescriptor.ARGUMENT_DISALLOWED, 'n', null );
@@ -540,6 +561,6 @@ public final class ClutilTestCase
 
     final StringBuffer sb = CLUtil.describeOptions( options );
     final String lineSeparator = System.getProperty( "line.separator" );
-    assertEquals( "Testing display of null description", "\t-n, --nulltest" + lineSeparator, sb.toString() );
+    assertEquals( "\t-n, --nulltest" + lineSeparator, sb.toString() );
   }
 }
