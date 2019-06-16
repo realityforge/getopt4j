@@ -51,7 +51,7 @@ public final class CLOptionDescriptor
                              final String description )
   {
     this( name, flags, id, description,
-          ( ( flags & CLOptionDescriptor.DUPLICATES_ALLOWED ) > 0 )
+          ( flags & CLOptionDescriptor.DUPLICATES_ALLOWED ) > 0
           ? new int[ 0 ] : new int[]{ id } );
   }
 

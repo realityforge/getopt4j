@@ -319,7 +319,7 @@ public final class ClutilTestCase
     {
       public boolean isFinished( int lastOptionCode )
       {
-        return ( lastOptionCode == YOU_OPT );
+        return lastOptionCode == YOU_OPT;
       }
     };
 
@@ -343,7 +343,7 @@ public final class ClutilTestCase
     {
       public boolean isFinished( int lastOptionCode )
       {
-        return ( lastOptionCode == YOU_OPT );
+        return lastOptionCode == YOU_OPT;
       }
     };
 
@@ -384,7 +384,7 @@ public final class ClutilTestCase
     {
       public boolean isFinished( final int lastOptionCode )
       {
-        return ( lastOptionCode == CLEAR1_OPT );
+        return lastOptionCode == CLEAR1_OPT;
       }
     };
 
