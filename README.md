@@ -1,6 +1,6 @@
 # getopt4j - Command line parsing library
 
-[![Build Status](https://secure.travis-ci.org/realityforge/getopt4j.svg?branch=master)](http://travis-ci.org/realityforge/getopt4j)
+[![Build Status](https://api.travis-ci.com/realityforge/getopt4j.svg?branch=master)](http://travis-ci.org/realityforge/getopt4j)
 [<img src="https://img.shields.io/maven-central/v/org.realityforge.getopt4j/getopt4j.svg?label=latest%20release"/>](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.realityforge.getopt4j%22%20a%3A%22getopt4j%22)
 
 The "getopt4j" library is designed to parse the command line options in
