@@ -2,7 +2,7 @@
 
 ### Unreleased
 
-* Upgrade the `au.com.stocksoftware.idea.codestyle` artifact to version `1.14`.
+* Upgrade the `au.com.stocksoftware.idea.codestyle` artifact to version `1.17`.
 
 ### [v1.3](https://github.com/realityforge/getopt4j/tree/v1.3) (2019-06-17) · [Full Changelog](https://github.com/realityforge/getopt4j/compare/v1.2...v1.3)
 
