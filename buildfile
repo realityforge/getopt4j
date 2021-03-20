@@ -1,6 +1,8 @@
 require 'buildr/git_auto_version'
 require 'buildr/gpg'
 
+Buildr::MavenCentral.define_publish_tasks(:profile_name => 'org.realityforge', :username => 'realityforge')
+
 desc 'getopt4j: Parse command line arguments in java.'
 define 'getopt4j' do
   project.group = 'org.realityforge.getopt4j'
